@@ -1,8 +1,8 @@
 from openai import OpenAI
+from dotenv import load_dotenv
 
-api_key = os.environ.get("OPENAI_API_KEY")
-api_key = "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"
-
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
 
@@ -12,4 +12,5 @@ transcription = client.audio.transcriptions.create(
   file=audio_file,
   response_format="srt"
 )
+
 print(transcription.text)
